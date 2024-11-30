@@ -9,7 +9,6 @@ export default function History() {
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   const router = useRouter();
 
-  // Ensure history is not empty at first load
   if (!searchHistory) return null;
 
   let parsedHistory = [];
@@ -24,15 +23,12 @@ export default function History() {
     router.push(`/artwork?${searchHistory[index]}`);
   };
 
-  // Make the remove action asynchronous
   const removeHistoryClicked = async (e, index) => {
     e.stopPropagation();
     const historyItemToRemove = searchHistory[index];
 
-    // Remove from the backend (database)
     await removeFromHistory(historyItemToRemove);
 
-    // Update the state to remove the item locally
     setSearchHistory((current) => {
       let updatedHistory = [...current];
       updatedHistory.splice(index, 1);

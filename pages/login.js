@@ -19,14 +19,13 @@ export default function Login() {
     const isAuthenticated = await authenticateUser(user, password);
 
     if (isAuthenticated) {
-      // Update atoms with data from the backend
       async function updateAtoms() {
         setFavouritesList(await getFavourites());
         setSearchHistory(await getHistory());
       }
       await updateAtoms();
 
-      router.push("/favourites"); // Redirect to favourites page
+      router.push("/favourites"); 
     } else {
       setError("Invalid username or password. Please try again.");
     }

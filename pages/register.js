@@ -21,7 +21,7 @@ export default function Register() {
     const isRegistered = await registerUser(user, password, password2);
 
     if (isRegistered) {
-      router.push("/login"); // Redirect to login page
+      router.push("/login"); 
     } else {
       setError("Failed to register. Please try again.");
     }
